@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn30px5ugqtun"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_q4dt8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_chov3"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr8a"]
+size = Vector2(60, 60)
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(-100, -100)
+script = ExtResource("1_q4dt8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_chov3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cxr8a")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)

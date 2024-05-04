@@ -1,0 +1,209 @@
+[gd_scene load_steps=24 format=3 uid="uid://0lkk0an5wgil"]
+
+[ext_resource type="Texture2D" uid="uid://72dbnw6hsrbe" path="res://mat/tile.png" id="1_2hotk"]
+[ext_resource type="Script" path="res://Player.gd" id="2_4qey5"]
+[ext_resource type="Script" path="res://Gun.gd" id="3_p28uf"]
+[ext_resource type="Script" path="res://GunSight.gd" id="4_4mk4i"]
+[ext_resource type="Script" path="res://GunBullet.gd" id="5_twmyu"]
+[ext_resource type="Script" path="res://EnemyContainer.gd" id="6_ulhqu"]
+[ext_resource type="Script" path="res://Enemy.gd" id="7_ycrs8"]
+[ext_resource type="Script" path="res://Control.gd" id="8_cs88o"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_c6fku"]
+vertices = PackedVector2Array(50, 50, -50, 50, -50, -50, 50, -50)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_led4l"]
+texture = ExtResource("1_2hotk")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_c6fku")
+
+[sub_resource type="TileSet" id="TileSet_bofu3"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_led4l")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vwa7"]
+size = Vector2(60, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isycy"]
+size = Vector2(50, 70)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vffnu"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nxj2"]
+size = Vector2(60, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8vjl"]
+radius = 500.0
+
+[sub_resource type="ImageTexture" id="ImageTexture_pqlqp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x8ojs"]
+size = Vector2(80, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ri0p0"]
+size = Vector2(30, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydpk"]
+size = Vector2(30, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fptqu"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omj7y"]
+size = Vector2(60, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igvkb"]
+font_size = 72
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bofu3")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 65536, 0, 65538, 65536, 0, 65539, 65536, 0, 65540, 65536, 0, 65541, 65536, 0, 65542, 65536, 0, 65543, 65536, 0, 65544, 65536, 0, 65545, 65536, 0, 65546, 65536, 0, 65547, 65536, 0, 65548, 65536, 0, 65549, 65536, 0, 65550, 65536, 0, 131086, 65536, 0, 131087, 65536, 0, 131088, 65536, 0, 65552, 65536, 0, 65551, 65536, 0, 131085, 65536, 0, 131084, 65536, 0, 131083, 65536, 0, 131082, 65536, 0, 131081, 65536, 0, 131080, 65536, 0, 131079, 65536, 0, 131078, 65536, 0, 131077, 65536, 0, 131076, 65536, 0, 131075, 65536, 0, 131074, 65536, 0, 131073, 65536, 0, 196609, 65536, 0, 196610, 65536, 0, 196611, 0, 0, 196612, 0, 0, 196613, 65536, 0, 196614, 65536, 0, 196615, 0, 0, 196616, 0, 0, 196617, 65536, 0, 196618, 65536, 0, 196619, 0, 0, 196620, 0, 0, 196621, 65536, 0, 196622, 65536, 0, 196623, 0, 0, 196624, 0, 0, 262160, 0, 0, 262159, 0, 0, 262158, 65536, 0, 262157, 65536, 0, 262156, 0, 0, 262155, 0, 0, 262154, 65536, 0, 262153, 65536, 0, 262152, 0, 0, 262151, 0, 0, 262150, 65536, 0, 262149, 65536, 0, 262147, 0, 0, 262146, 65536, 0, 262145, 65536, 0, 327681, 65536, 0, 327682, 65536, 0, 327683, 65536, 0, 327685, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 327688, 65536, 0, 327689, 65536, 0, 327690, 65536, 0, 327691, 65536, 0, 327692, 65536, 0, 327693, 65536, 0, 327694, 65536, 0, 327695, 65536, 0, 327696, 65536, 0, 393232, 65536, 0, 393231, 65536, 0, 393230, 65536, 0, 393229, 65536, 0, 393228, 65536, 0, 393227, 65536, 0, 393226, 65536, 0, 393225, 65536, 0, 393224, 65536, 0, 393223, 65536, 0, 393222, 65536, 0, 393221, 65536, 0, 393219, 65536, 0, 393218, 65536, 0, 393217, 65536, 0, 458753, 65536, 0, 458754, 65536, 0, 458755, 0, 0, 458757, 65536, 0, 458758, 65536, 0, 458759, 65536, 0, 458760, 65536, 0, 458761, 65536, 0, 458762, 65536, 0, 458763, 65536, 0, 458764, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 458767, 65536, 0, 458768, 65536, 0, 524304, 65536, 0, 524303, 65536, 0, 524302, 65536, 0, 524301, 65536, 0, 524300, 65536, 0, 524299, 65536, 0, 524298, 65536, 0, 524297, 65536, 0, 524296, 65536, 0, 524295, 65536, 0, 524294, 65536, 0, 524293, 65536, 0, 524291, 0, 0, 524290, 65536, 0, 524289, 65536, 0, 589825, 65536, 0, 589826, 65536, 0, 589827, 65536, 0, 589828, 65536, 0, 589829, 65536, 0, 589830, 65536, 0, 589831, 65536, 0, 589832, 65536, 0, 589833, 65536, 0, 589834, 65536, 0, 589835, 65536, 0, 589836, 65536, 0, 589837, 65536, 0, 589838, 65536, 0, 589839, 65536, 0, 655375, 65536, 0, 655374, 65536, 0, 655373, 65536, 0, 655372, 65536, 0, 655371, 65536, 0, 655370, 65536, 0, 655369, 65536, 0, 655368, 65536, 0, 655367, 65536, 0, 655366, 65536, 0, 655365, 65536, 0, 655364, 65536, 0, 655363, 65536, 0, 655362, 65536, 0, 655361, 65536, 0, 655360, 0, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 16, 0, 0, 15, 0, 0, 14, 0, 0, 13, 0, 0, 12, 0, 0, 11, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 720896, 0, 0, 720897, 65536, 0, 720898, 65536, 0, 720899, 0, 0, 720900, 0, 0, 720901, 65536, 0, 720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 262148, 0, 0, 327684, 65536, 0, 393220, 65536, 0, 458756, 0, 0, 524292, 0, 0, 589840, 65536, 0, 655376, 65536, 0, 720912, 65536, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 786432, 0, 0, 851968, 0, 0, 917504, 0, 0, 983040, 0, 0, 1048576, 0, 0, 1048577, 65536, 0, 1048578, 65536, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 65536, 0, 1048582, 65536, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 65536, 0, 1048586, 65536, 0, 1048587, 0, 0, 1048588, 0, 0, 1048589, 65536, 0, 1048590, 65536, 0, 1048591, 0, 0, 1048592, 0, 0, 1048593, 65536, 0, 1048594, 65536, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 65536, 0, 1048598, 65536, 0, 1048599, 0, 0, 65553, 65536, 0, 65554, 65536, 0, 65555, 65536, 0, 65556, 65536, 0, 65557, 65536, 0, 65558, 65536, 0, 65559, 0, 0, 131095, 0, 0, 131094, 65536, 0, 131093, 65536, 0, 131092, 65536, 0, 131091, 65536, 0, 131090, 65536, 0, 131089, 65536, 0, 262161, 65536, 0, 262162, 65536, 0, 262163, 0, 0, 262164, 0, 0, 262165, 65536, 0, 262166, 65536, 0, 196630, 65536, 0, 196629, 65536, 0, 196628, 0, 0, 196627, 0, 0, 196626, 65536, 0, 196625, 65536, 0, 196631, 0, 0, 262167, 0, 0, 327703, 0, 0, 327702, 65536, 0, 327701, 65536, 0, 327700, 65536, 0, 327699, 65536, 0, 327698, 65536, 0, 327697, 65536, 0, 393233, 65536, 0, 393234, 65536, 0, 393235, 65536, 0, 393236, 65536, 0, 393237, 65536, 0, 393238, 65536, 0, 393239, 0, 0, 458775, 0, 0, 524311, 0, 0, 524310, 65536, 0, 524309, 65536, 0, 458773, 65536, 0, 458772, 0, 0, 458771, 0, 0, 458770, 65536, 0, 458769, 65536, 0, 458774, 65536, 0, 524308, 0, 0, 524307, 0, 0, 524306, 65536, 0, 524305, 65536, 0, 589842, 65536, 0, 589843, 65536, 0, 589844, 65536, 0, 589845, 65536, 0, 589846, 65536, 0, 589847, 0, 0, 655382, 65536, 0, 589841, 65536, 0, 655377, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 720915, 0, 0, 655379, 65536, 0, 655380, 65536, 0, 655381, 65536, 0, 655378, 65536, 0, 720916, 0, 0, 720917, 65536, 0, 720918, 65536, 0, 786454, 65536, 0, 786453, 65536, 0, 786452, 0, 0, 786451, 0, 0, 786450, 65536, 0, 786449, 65536, 0, 786448, 65536, 0, 786447, 65536, 0, 786446, 65536, 0, 786445, 65536, 0, 786444, 65536, 0, 786443, 65536, 0, 786442, 65536, 0, 786441, 65536, 0, 786440, 65536, 0, 786439, 65536, 0, 786438, 65536, 0, 786437, 65536, 0, 786436, 0, 0, 786435, 0, 0, 786434, 65536, 0, 786433, 65536, 0, 851969, 65536, 0, 851970, 65536, 0, 851971, 65536, 0, 851972, 65536, 0, 851973, 65536, 0, 851974, 65536, 0, 851975, 65536, 0, 851976, 65536, 0, 851977, 65536, 0, 851978, 65536, 0, 851979, 65536, 0, 851980, 65536, 0, 851981, 65536, 0, 917517, 65536, 0, 917518, 65536, 0, 917519, 65536, 0, 917520, 65536, 0, 917521, 65536, 0, 917522, 65536, 0, 917523, 65536, 0, 917524, 65536, 0, 851988, 65536, 0, 851989, 65536, 0, 851990, 65536, 0, 851987, 65536, 0, 851982, 65536, 0, 851983, 65536, 0, 851984, 65536, 0, 851985, 65536, 0, 851986, 65536, 0, 917526, 65536, 0, 917525, 65536, 0, 917516, 65536, 0, 917515, 65536, 0, 917514, 65536, 0, 917513, 65536, 0, 917512, 65536, 0, 917511, 65536, 0, 917510, 65536, 0, 917509, 65536, 0, 917508, 65536, 0, 917507, 65536, 0, 917506, 65536, 0, 917505, 65536, 0, 983041, 65536, 0, 983042, 65536, 0, 983043, 0, 0, 983044, 0, 0, 983045, 65536, 0, 983046, 65536, 0, 983047, 0, 0, 983048, 0, 0, 983049, 65536, 0, 983050, 65536, 0, 983051, 0, 0, 983052, 0, 0, 983053, 65536, 0, 983054, 65536, 0, 983055, 0, 0, 983056, 0, 0, 983057, 65536, 0, 983058, 65536, 0, 983059, 0, 0, 983060, 0, 0, 983061, 65536, 0, 983062, 65536, 0, 983063, 0, 0, 1114135, 0, 0, 1114134, 65536, 0, 1114133, 65536, 0, 1114132, 65536, 0, 1114131, 65536, 0, 1114130, 65536, 0, 1114129, 65536, 0, 1114128, 65536, 0, 1114127, 65536, 0, 1114126, 65536, 0, 1114125, 65536, 0, 1114124, 65536, 0, 1114123, 65536, 0, 1114122, 65536, 0, 1114121, 65536, 0, 1114120, 65536, 0, 1114119, 65536, 0, 1114118, 65536, 0, 1114117, 65536, 0, 1114116, 65536, 0, 1114115, 65536, 0, 1114114, 65536, 0, 1114113, 65536, 0, 1114112, 0, 0, 655383, 0, 0, 720919, 0, 0, 786455, 0, 0, 851991, 0, 0, 917527, 0, 0, 1179648, 0, 0, 1179649, 65536, 0, 1179650, 65536, 0, 1179651, 65536, 0, 1179652, 65536, 0, 1179653, 65536, 0, 1179654, 65536, 0, 1179655, 65536, 0, 1179656, 65536, 0, 1179657, 65536, 0, 1179658, 65536, 0, 1179659, 65536, 0, 1179660, 65536, 0, 1179661, 65536, 0, 1179662, 65536, 0, 1179663, 65536, 0, 1179664, 65536, 0, 1179665, 65536, 0, 1179666, 65536, 0, 1179667, 65536, 0, 1179668, 65536, 0, 1179669, 65536, 0, 1179670, 65536, 0, 1179671, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(600, 500)
+script = ExtResource("2_4qey5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("PlaceholderTexture2D_0vwa7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+visible = false
+shape = SubResource("RectangleShape2D_isycy")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Gun" type="Marker2D" parent="Player"]
+script = ExtResource("3_p28uf")
+
+[node name="Marker2D" type="Marker2D" parent="Player/Gun"]
+position = Vector2(100, 0)
+
+[node name="GunSight" type="Marker2D" parent="Player"]
+script = ExtResource("4_4mk4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/GunSight"]
+position = Vector2(250, 0)
+texture = SubResource("PlaceholderTexture2D_vffnu")
+
+[node name="HitBox" type="Area2D" parent="Player"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitBox"]
+shape = SubResource("RectangleShape2D_8nxj2")
+
+[node name="SpawnBarrier" type="Area2D" parent="Player"]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/SpawnBarrier"]
+shape = SubResource("CircleShape2D_b8vjl")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Player"]
+offset_left = -40.0
+offset_top = 60.0
+offset_bottom = 100.0
+max_value = 5.0
+value = 5.0
+texture_under = SubResource("ImageTexture_pqlqp")
+texture_progress = SubResource("PlaceholderTexture2D_x8ojs")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="BulletContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GunBullet" type="Area2D" parent="BulletContainer"]
+unique_name_in_owner = true
+position = Vector2(-100, 0)
+script = ExtResource("5_twmyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletContainer/GunBullet"]
+texture = SubResource("PlaceholderTexture2D_ri0p0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletContainer/GunBullet"]
+shape = SubResource("RectangleShape2D_7ydpk")
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_ulhqu")
+
+[node name="Timer" type="Timer" parent="EnemyContainer"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy" type="CharacterBody2D" parent="EnemyContainer"]
+unique_name_in_owner = true
+position = Vector2(-100, -100)
+script = ExtResource("7_ycrs8")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyContainer/Enemy"]
+texture = SubResource("PlaceholderTexture2D_fptqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyContainer/Enemy"]
+shape = SubResource("RectangleShape2D_omj7y")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyContainer/Enemy"]
+
+[node name="Line2D" type="Line2D" parent="EnemyContainer/Enemy"]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_cs88o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="Panel" type="Panel" parent="Control/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 50.0
+offset_right = 148.0
+offset_bottom = 150.0
+grow_horizontal = 2
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Label" parent="Control/CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "?"
+label_settings = SubResource("LabelSettings_igvkb")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Player/HitBox" to="Player" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="BulletContainer/GunBullet" to="BulletContainer/GunBullet" method="_on_body_entered"]
+[connection signal="timeout" from="EnemyContainer/Timer" to="EnemyContainer" method="_on_timer_timeout"]
