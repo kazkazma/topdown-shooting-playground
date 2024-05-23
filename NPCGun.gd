@@ -1,4 +1,4 @@
-class_name Gun extends Marker2D
+class_name NPCGun extends Marker2D
 
 const BULLET = preload("res://GunBullet.tscn")
 
@@ -6,7 +6,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	look_at(get_global_mouse_position())
+	if get_parent().focus_body != null:
+		look_at(get_parent().focus_body.global_position)
 
 func shoot():
 	var bullet: GunBullet = BULLET.instantiate()
@@ -15,3 +16,7 @@ func shoot():
 	bullet.enable = true
 	bullet.position = $Marker2D.global_position
 	bullet.rotation = global_rotation
+
+func _on_timer_timeout():
+	shoot()
+	pass # Replace with function body.

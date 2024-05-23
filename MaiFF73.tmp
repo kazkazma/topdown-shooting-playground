@@ -1,11 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://0lkk0an5wgil"]
+[gd_scene load_steps=23 format=3 uid="uid://0lkk0an5wgil"]
 
 [ext_resource type="Texture2D" uid="uid://px05to64n6o7" path="res://mat/HTILE.png" id="1_80o26"]
 [ext_resource type="Script" path="res://Player.gd" id="2_4qey5"]
 [ext_resource type="Script" path="res://Gun.gd" id="3_p28uf"]
 [ext_resource type="Texture2D" uid="uid://kjyb2fxcwv7v" path="res://mat/p.png" id="4_x0u3y"]
 [ext_resource type="Script" path="res://NPC.gd" id="5_pohlh"]
-[ext_resource type="Script" path="res://NPCGun.gd" id="6_rjbpx"]
 [ext_resource type="Script" path="res://EnemyContainer.gd" id="6_ulhqu"]
 [ext_resource type="Script" path="res://Control.gd" id="8_cs88o"]
 
@@ -53,13 +52,13 @@ texture_region_size = Vector2i(160, 120)
 0:0/0/texture_origin = Vector2i(0, -20)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, -80, -20, -80, 20, 80, -20)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, -80, -20, -80, 20, 0, 40, 80, 20, 80, -20)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lrhxu")
 0:1/0 = 0
 0:1/0/texture_origin = Vector2i(0, -20)
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-80, -20, -80, 20, 0, 40)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, -80, -20, 0, 40, 80, 20, 80, -20)
 0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jx8vv")
 1:1/0 = 0
 1:1/0/texture_origin = Vector2i(0, -20)
@@ -110,7 +109,7 @@ size = Vector2(10, 10)
 size = Vector2(500, 1520)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nymp0"]
-radius = 600.0
+radius = 500.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_igvkb"]
 font_size = 72
@@ -168,7 +167,7 @@ position = Vector2(250, 0)
 texture = SubResource("PlaceholderTexture2D_vffnu")
 
 [node name="Marker2D" type="Marker2D" parent="Player/Gun"]
-position = Vector2(-100, 0)
+position = Vector2(100, 0)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -180,13 +179,7 @@ offset = Vector2(300, 0)
 position = Vector2(1536, 60)
 shape = SubResource("RectangleShape2D_6t7rf")
 
-[node name="FollowPoint" type="Marker2D" parent="Player"]
-position = Vector2(200, 0)
-
 [node name="NPC" type="CharacterBody2D" parent="."]
-position = Vector2(400, 400)
-collision_layer = 8
-collision_mask = 8
 script = ExtResource("5_pohlh")
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC"]
@@ -208,21 +201,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/SearchArea"]
 shape = SubResource("CircleShape2D_nymp0")
-
-[node name="Gun" type="Marker2D" parent="NPC"]
-script = ExtResource("6_rjbpx")
-
-[node name="GunSight" type="Marker2D" parent="NPC/Gun"]
-
-[node name="Sprite2D" type="Sprite2D" parent="NPC/Gun/GunSight"]
-position = Vector2(250, 0)
-texture = SubResource("PlaceholderTexture2D_vffnu")
-
-[node name="Marker2D" type="Marker2D" parent="NPC/Gun"]
-position = Vector2(100, 0)
-
-[node name="Timer" type="Timer" parent="NPC/Gun"]
-wait_time = 0.245
 
 [node name="BulletContainer" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -272,5 +250,4 @@ horizontal_alignment = 1
 
 [connection signal="body_entered" from="Player/HitBox" to="Player" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="NPC/SearchArea" to="NPC" method="_on_search_area_body_entered"]
-[connection signal="timeout" from="NPC/Gun/Timer" to="NPC/Gun" method="_on_timer_timeout"]
 [connection signal="timeout" from="EnemyContainer/Timer" to="EnemyContainer" method="_on_timer_timeout"]

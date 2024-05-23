@@ -1,0 +1,282 @@
+[gd_scene load_steps=29 format=3 uid="uid://0lkk0an5wgil"]
+
+[ext_resource type="Script" path="res://Player.gd" id="2_4qey5"]
+[ext_resource type="Texture2D" uid="uid://5a4dcv3hctew" path="res://mat/HTILE.png" id="2_xk0ll"]
+[ext_resource type="Script" path="res://Gun.gd" id="3_p28uf"]
+[ext_resource type="Script" path="res://GunSight.gd" id="4_4mk4i"]
+[ext_resource type="Texture2D" uid="uid://kjyb2fxcwv7v" path="res://mat/p.png" id="4_x0u3y"]
+[ext_resource type="Script" path="res://GunBullet.gd" id="5_twmyu"]
+[ext_resource type="Script" path="res://EnemyContainer.gd" id="6_ulhqu"]
+[ext_resource type="Script" path="res://Enemy.gd" id="7_ycrs8"]
+[ext_resource type="Script" path="res://Control.gd" id="8_cs88o"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4vaxe"]
+vertices = PackedVector2Array(80, 20, 0, 40, -80, 20, 80, -20)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-80, 20, 0, 40, 80, 20, 80, -20)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4305a"]
+vertices = PackedVector2Array(80, -20, 80, 20, 0, 40, -80, -20, 0, -40)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -40, -80, -20, 0, 40, 80, 20, 80, -20)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_72r3j"]
+vertices = PackedVector2Array(80, -20, -80, 20, -80, -20, 0, -40)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -40, -80, -20, -80, 20, 80, -20)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o4ard"]
+vertices = PackedVector2Array(80, -20, 80, 20, 0, 40, -80, 20, -80, -20, 0, -40)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -40, -80, -20, -80, 20, 0, 40, 80, 20, 80, -20)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a42a8"]
+vertices = PackedVector2Array(80, 20, 0, 40, -80, 20, -80, -20, 0, -40)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -40, -80, -20, -80, 20, 0, 40, 80, 20)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_up5dx"]
+texture = ExtResource("2_xk0ll")
+texture_region_size = Vector2i(160, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, -80, -20, -80, 20, 80, -20)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4vaxe")
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-80, 20, 0, 40, 80, 20, 80, -20)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_72r3j")
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, -80, -20, -80, 20, 0, 40, 80, 20, 80, -20)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-80, -20, -80, 20, 0, 40)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4305a")
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_o4ard")
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -40, 80, 20, 80, -20)
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a42a8")
+
+[sub_resource type="TileSet" id="TileSet_tap0e"]
+tile_shape = 3
+tile_size = Vector2i(160, 80)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_up5dx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2aih1"]
+radius = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrqu7"]
+size = Vector2(60, 120)
+
+[sub_resource type="ImageTexture" id="ImageTexture_pqlqp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x8ojs"]
+size = Vector2(80, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vffnu"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8vjl"]
+radius = 500.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ri0p0"]
+size = Vector2(30, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydpk"]
+size = Vector2(30, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qigcl"]
+radius = 40.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fptqu"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08o3f"]
+size = Vector2(100, 100)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igvkb"]
+font_size = 72
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_tap0e")
+format = 2
+layer_0/name = "FLOOR"
+layer_0/tile_data = PackedInt32Array(589826, 65536, 1, 589827, 65536, 1, 524292, 65536, 1, 524293, 65536, 1, 458757, 65536, 1, 458758, 65536, 1, 393223, 65536, 1, 524294, 65536, 1, 589828, 65536, 1, 655364, 65536, 1, 655363, 65536, 1, 720899, 65536, 1, 786436, 65536, 1, 720900, 65536, 1, 655365, 65536, 1, 589829, 65536, 1, 720901, 65536, 1, 655366, 65536, 1, 589830, 65536, 1, 524295, 65536, 1, 589831, 65536, 1, 458759, 65536, 1, 524296, 65536, 1, 589832, 65536, 1, 393224, 65536, 1, 458760, 65536, 1, 524297, 65536, 1, 327688, 65536, 1, 393225, 65536, 1, 458761, 65536, 1, 524298, 65536, 1, 327689, 65536, 1, 393226, 65536, 1, 458762, 65536, 1, 262154, 65536, 1, 327690, 65536, 1, 393227, 65536, 1, 458763, 65536, 1, 262155, 65536, 1, 327691, 65536, 1, 393228, 65536, 1, 196618, 65536, 1, 458764, 65536, 1, 524300, 65536, 1, 655369, 65536, 1, 720903, 65536, 1, 786438, 65536, 1, 851972, 65536, 1, 196617, 0, 0, 262152, 0, 0, 327686, 0, 0, 393221, 0, 0, 458755, 0, 0, 524290, 0, 0, 655367, 65536, 1, 589834, 65536, 1, 524299, 65536, 1, 589833, 65536, 1, 655368, 65536, 1, 720902, 65536, 1, 786437, 65536, 1, 524291, 65536, 1, 458756, 65536, 1, 393222, 65536, 1, 327687, 65536, 1, 262153, 65536, 1, 589825, 65536, 1, 655362, 65536, 1, 720898, 65536, 1, 786435, 65536, 1, 851971, 65536, 1, 917508, 65536, 1, 983044, 65536, 1, 1048581, 65536, 1, 524301, 65536, 1, 589837, 65536, 1, 655374, 65536, 1, 851973, 65536, 1, 786439, 65536, 1, 655370, 65536, 1, 589835, 65536, 1, 589836, 65536, 1, 655372, 65536, 1, 655371, 65536, 1, 720905, 65536, 1, 786441, 65536, 1, 720904, 65536, 1, 786440, 65536, 1, 851974, 65536, 1, 917509, 65536, 1, 917510, 65536, 1, 983045, 65536, 1, 983046, 65536, 1, 917511, 65536, 1, 917512, 65536, 1, 851975, 65536, 1, 851976, 65536, 1, 851977, 65536, 1, 786442, 65536, 1, 720906, 65536, 1, 786443, 65536, 1, 720907, 65536, 1, 655373, 65536, 1, 720908, 65536, 1, 1048582, 65536, 1, 983047, 65536, 1, 917513, 65536, 1, 851978, 65536, 1, 786444, 65536, 1, 720909, 65536, 1, 1048583, 65536, 1, 1114117, 65536, 1, 983048, 65536, 1, 917514, 65536, 1, 851979, 65536, 1, 524289, 131072, 0, 458754, 131072, 0, 393220, 131072, 0, 327685, 131072, 0, 262151, 131072, 0, 196616, 131072, 0, 131082, 131072, 0, 720910, 65536, 1, 786447, 65536, 1, 786445, 65536, 1, 851980, 65536, 1, 917515, 65536, 1, 1048584, 65536, 1, 1114118, 65536, 1, 983049, 65536, 1, 1048585, 65536, 1, 1114119, 65536, 1, 1179655, 65536, 1, 1179654, 65536, 1, 1114120, 65536, 1, 1048586, 65536, 1, 983050, 65536, 1, 917516, 65536, 1, 851981, 65536, 1, 786446, 65536, 1, 851982, 65536, 1, 1245190, 65536, 1, 1245191, 65536, 0, 1179657, 65536, 0, 1114122, 65536, 0, 1048588, 65536, 0, 983053, 65536, 0, 917519, 65536, 0, 851984, 65536, 0, 786450, 65536, 0, 720915, 65536, 0, 786448, 65536, 1, 720911, 65536, 1, 655375, 65536, 1, 524302, 65536, 1, 458765, 65536, 1, 393229, 65536, 1, 327692, 65536, 1, 262156, 65536, 1, 196619, 65536, 1, 131084, 65536, 1, 196620, 65536, 1, 262157, 65536, 1, 327693, 65536, 1, 393230, 65536, 1, 458766, 65536, 1, 589839, 65536, 1, 655376, 65536, 1, 720912, 65536, 1, 851983, 65536, 1, 917518, 65536, 1, 720914, 65536, 1, 720913, 65536, 1, 786449, 65536, 1, 983052, 65536, 1, 1048587, 65536, 1, 1114121, 65536, 1, 1179656, 65536, 1, 983051, 65536, 1, 917517, 65536, 1, 131085, 65536, 1, 196621, 65536, 1, 262158, 65536, 1, 327694, 65536, 1, 393231, 65536, 1, 458767, 65536, 1, 524304, 65536, 1, 589840, 65536, 1, 655377, 65536, 1, 65549, 65536, 1, 131086, 65536, 1, 196622, 65536, 1, 262159, 65536, 1, 327695, 65536, 1, 393232, 65536, 1, 458768, 65536, 1, 524305, 65536, 1, 589841, 65536, 1, 655378, 65536, 1, 65550, 65536, 1, 131087, 65536, 1, 196623, 65536, 1, 262160, 65536, 1, 327696, 65536, 1, 393233, 65536, 1, 458769, 65536, 1, 524306, 65536, 1, 589842, 65536, 1, 655379, 65536, 1, 1114116, 65536, 1, 1179653, 65536, 1, 1245189, 65536, 1, 1048580, 65536, 1, 983043, 65536, 1, 917507, 65536, 1, 786434, 65536, 1, 917506, 65536, 1, 851970, 65536, 1, 720897, 65536, 1, 655361, 65536, 1, 655360, 65536, 1, 720896, 65536, 1, 786433, 65536, 1, 851969, 65536, 1, 983042, 65536, 1, 1048579, 65536, 1, 1114115, 65536, 1, 1179652, 65536, 1, 1245188, 65536, 1, 786431, 65536, 1, 786432, 65536, 1, 851968, 65536, 1, 917505, 65536, 1, 983041, 65536, 1, 1048578, 65536, 1, 1114114, 65536, 1, 1179651, 65536, 1, 1245187, 65536, 1, 1310724, 65536, 1, 1310726, 65536, 0, 1310725, 65536, 1, 1376259, 0, 1, 1376260, 65536, 0, 1310723, 0, 1, 1245186, 0, 1, 1179650, 0, 1, 1114113, 0, 1, 1048577, 0, 1, 983040, 0, 1, 917504, 0, 1, 917503, 0, 1, 851967, 0, 1, 786430, 0, 1, 720895, 0, 0, 589824, 0, 0, 131083, 0, 0, 65548, 0, 0, 14, 0, 0, 524303, 65536, 1, 589838, 65536, 1, 15, 131072, 1, 65551, 131072, 1, 131088, 131072, 1, 196624, 131072, 1, 262161, 131072, 1, 327697, 131072, 1, 393234, 131072, 1, 458770, 131072, 1, 524307, 131072, 1, 589843, 131072, 1, 655380, 131072, 1, 1441796, 131072, 0, 1376261, 131072, 0, 1310727, 131072, 0, 1245192, 131072, 0, 1179658, 131072, 0, 1114123, 131072, 0, 1048589, 131072, 0, 983054, 131072, 0, 917520, 131072, 0, 851985, 131072, 0, 786451, 131072, 0, 720916, 131072, 0, -65522, 131072, 0, 13, 131072, 0, 65547, 131072, 0, 655359, 131072, 0, 720894, 131072, 0)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(600, 500)
+platform_on_leave = 2
+script = ExtResource("2_4qey5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_x0u3y")
+offset = Vector2(50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(10, 60)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_2aih1")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitBox"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_mrqu7")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Player"]
+offset_left = -40.0
+offset_top = -92.0
+offset_bottom = -52.0
+max_value = 5.0
+value = 5.0
+texture_under = SubResource("ImageTexture_pqlqp")
+texture_progress = SubResource("PlaceholderTexture2D_x8ojs")
+
+[node name="Gun" type="Marker2D" parent="Player"]
+script = ExtResource("3_p28uf")
+
+[node name="Marker2D" type="Marker2D" parent="Player/Gun"]
+position = Vector2(100, 0)
+
+[node name="GunSight" type="Marker2D" parent="Player"]
+script = ExtResource("4_4mk4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/GunSight"]
+position = Vector2(250, 0)
+texture = SubResource("PlaceholderTexture2D_vffnu")
+
+[node name="EnemySpawnArea" type="Area2D" parent="Player"]
+
+[node name="EnemyUnspawnArea" type="Area2D" parent="Player"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/EnemyUnspawnArea"]
+shape = SubResource("CircleShape2D_b8vjl")
+
+[node name="Camera" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
+offset = Vector2(300, 0)
+
+[node name="BulletContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GunBullet" type="StaticBody2D" parent="BulletContainer"]
+unique_name_in_owner = true
+position = Vector2(-100, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_twmyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletContainer/GunBullet"]
+texture = SubResource("PlaceholderTexture2D_ri0p0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletContainer/GunBullet"]
+shape = SubResource("RectangleShape2D_7ydpk")
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_ulhqu")
+
+[node name="Timer" type="Timer" parent="EnemyContainer"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy" type="CharacterBody2D" parent="EnemyContainer"]
+unique_name_in_owner = true
+position = Vector2(-100, -100)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("7_ycrs8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyContainer/Enemy"]
+position = Vector2(0, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_qigcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyContainer/Enemy"]
+texture = SubResource("PlaceholderTexture2D_fptqu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyContainer/Enemy"]
+
+[node name="Line2D" type="Line2D" parent="EnemyContainer/Enemy"]
+visible = false
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="HitBox" type="Area2D" parent="EnemyContainer/Enemy"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyContainer/Enemy/HitBox"]
+shape = SubResource("RectangleShape2D_08o3f")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_cs88o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="Panel" type="Panel" parent="Control/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 50.0
+offset_right = 148.0
+offset_bottom = 150.0
+grow_horizontal = 2
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Label" parent="Control/CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "?"
+label_settings = SubResource("LabelSettings_igvkb")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Player/HitBox" to="Player" method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="EnemyContainer/Timer" to="EnemyContainer" method="_on_timer_timeout"]
+[connection signal="body_entered" from="EnemyContainer/Enemy/HitBox" to="EnemyContainer/Enemy" method="_on_hit_box_body_entered"]

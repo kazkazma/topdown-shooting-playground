@@ -1,26 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn30px5ugqtun"]
+[gd_scene load_steps=5 format=3 uid="uid://dgk55d144nqwv"]
 
-[ext_resource type="Script" path="res://Enemy.gd" id="1_q4dt8"]
+[ext_resource type="Script" path="res://Enemy.gd" id="1_h1iui"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_chov3"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qigcl"]
+radius = 40.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fptqu"]
 size = Vector2(60, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr8a"]
-size = Vector2(60, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08o3f"]
+size = Vector2(100, 100)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(-100, -100)
-script = ExtResource("1_q4dt8")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_chov3")
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_h1iui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cxr8a")
+position = Vector2(0, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_qigcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_fptqu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 100, 0)
 width = 5.0
-default_color = Color(1, 0, 0, 1)
+default_color = Color(0, 0, 0, 1)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_08o3f")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

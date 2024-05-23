@@ -1,8 +1,7 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 1000
+const SPEED = 500	# pixel/s
 var health: int = 5
-@onready var healeh_ui = $TextureProgressBar
 
 func _ready():
 	pass
@@ -20,12 +19,13 @@ func _physics_process(delta):
 		self.velocity = direction * SPEED
 		move_and_slide()
 		
-	healeh_ui.value = health
+	$HealthUI.value = health
 
 func _on_hit_box_body_entered(body):
 	if body is Enemy:
 		body.queue_free()
-			
+
 		health -= 1
 		if health <= 0:
 			visible = false
+

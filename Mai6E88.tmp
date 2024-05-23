@@ -110,7 +110,7 @@ size = Vector2(10, 10)
 size = Vector2(500, 1520)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nymp0"]
-radius = 600.0
+radius = 500.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_igvkb"]
 font_size = 72
@@ -168,7 +168,7 @@ position = Vector2(250, 0)
 texture = SubResource("PlaceholderTexture2D_vffnu")
 
 [node name="Marker2D" type="Marker2D" parent="Player/Gun"]
-position = Vector2(-100, 0)
+position = Vector2(100, 0)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -181,7 +181,7 @@ position = Vector2(1536, 60)
 shape = SubResource("RectangleShape2D_6t7rf")
 
 [node name="FollowPoint" type="Marker2D" parent="Player"]
-position = Vector2(200, 0)
+position = Vector2(-200, 100)
 
 [node name="NPC" type="CharacterBody2D" parent="."]
 position = Vector2(400, 400)
@@ -222,7 +222,7 @@ texture = SubResource("PlaceholderTexture2D_vffnu")
 position = Vector2(100, 0)
 
 [node name="Timer" type="Timer" parent="NPC/Gun"]
-wait_time = 0.245
+wait_time = 0.1
 
 [node name="BulletContainer" type="Node2D" parent="."]
 unique_name_in_owner = true

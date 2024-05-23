@@ -1,6 +1,6 @@
-class_name GunBullet extends Area2D
+class_name GunBullet extends StaticBody2D
 
-const SPEED = 20
+const SPEED = 1000	# pixel/s
 const RANGE = 750
 
 var enable = false
@@ -11,13 +11,12 @@ func _ready():
 
 func _physics_process(delta):	
 	if enable:
-		self.position += Vector2.RIGHT.rotated(self.rotation) * SPEED * 60 * delta
-		
-		traveled += SPEED
+		var travel_distance = SPEED * delta
+		self.position += Vector2.RIGHT.rotated(self.rotation) * travel_distance
+			
+		traveled += travel_distance
 		if traveled > RANGE:
 			queue_free()
 
 func _on_body_entered(body):
 	queue_free()
-	if body.has_method("take_damage"):
-		body.take_damage()
